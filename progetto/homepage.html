@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profumi di Classe - Home</title>
+  <link rel="stylesheet" href="stilehom.css"> <!-- Collega il file CSS -->
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <img src="immagini/logo.png" alt="Logo AuParfum" class="logo">
+      <h1 class="site-title">AuParfum</h1>
+    </div>
+  
+    <nav class="main-nav">
+      <ul>
+        <li><a href="homepage.html">Home</a></li>
+        <li><a href="#prodotti">I Nostri Prodotti</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </nav>
+  
+    <div class="header-icons">
+      <span class="user-icon">👤</span>
+      <span class="cart-icon">🛒</span>
+    </div>
+  </header>
+  
+    
+    <main>
+    <div class="new-arrivals">
+          <h4>Nuovi Arrivi</h4>
+          <div class="carousel-container">
+            <img src="immagini/prof1.png" alt="Nuovo Prodotto 1">
+            <img src="immagini/prof10.png" alt="Nuovo Prodotto 2">
+            <img src="immagini/prof12.png" alt="Nuovo Prodotto 3">
+          </div>
+      
+          <span class="arrow arrow-left">&#10094;</span>
+          <span class="arrow arrow-right">&#10095;</span>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 AuParfum - Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+      // Seleziona le immagini e le frecce
+      const images = document.querySelectorAll('.new-arrivals img');
+      const leftArrow = document.querySelector('.arrow-left');
+      const rightArrow = document.querySelector('.arrow-right');
+      
+      let currentIndex = 0; // L'indice dell'immagine attuale
+    
+      // Funzione per scorrere a sinistra
+      function scrollLeft() {
+        if (currentIndex > 0) {
+          currentIndex--;
+        } else {
+          currentIndex = images.length - 1; // Torna all'ultima immagine
+        }
+        updateCarousel();
+      }
+    
+      // Funzione per scorrere a destra
+      function scrollRight() {
+        if (currentIndex < images.length - 1) {
+          currentIndex++;
+        } else {
+          currentIndex = 0; // Torna alla prima immagine
+        }
+        updateCarousel();
+      }
+    
+      // Funzione per aggiornare la posizione del carosello
+      function updateCarousel() {
+        const offset = -currentIndex * 100; // Calcola lo spostamento in base all'indice
+        images.forEach(image => {
+          image.style.transform = `translateX(${offset}%)`; // Applica la trasformazione di scorrimento
+        });
+      }
+    
+      // Aggiungi gli eventi ai clic delle frecce
+      leftArrow.addEventListener('click', scrollLeft);
+      rightArrow.addEventListener('click', scrollRight);
+    
+      // Imposta l'iniziale posizione del carosello
+      updateCarousel();
+    </script>
+    
+</body>
+</html>
