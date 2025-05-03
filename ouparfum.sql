@@ -25,9 +25,18 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `aroma` varchar(50) NOT NULL,
   `sesso` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- L’esportazione dei dati non era selezionata.
+-- Dump dei dati della tabella ouparfum.categoria: ~8 rows (circa)
+INSERT INTO `categoria` (`id`, `aroma`, `sesso`) VALUES
+	(1, 'Fruttato', 'Femminile'),
+	(2, 'Fruttato', 'Maschile'),
+	(3, 'Legnoso', 'Femminile'),
+	(4, 'Legnoso', 'Maschile'),
+	(5, 'Agrumato', 'Femminile'),
+	(6, 'Agrumato', 'Maschile'),
+	(7, 'Floreale', 'Femminile'),
+	(8, 'Floreale', 'Maschile');
 
 -- Dump della struttura di tabella ouparfum.dettagli
 CREATE TABLE IF NOT EXISTS `dettagli` (
@@ -42,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `dettagli` (
   CONSTRAINT `dettagli_FK2` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- L’esportazione dei dati non era selezionata.
+-- Dump dei dati della tabella ouparfum.dettagli: ~0 rows (circa)
 
 -- Dump della struttura di tabella ouparfum.ordine
 CREATE TABLE IF NOT EXISTS `ordine` (
@@ -62,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `ordine` (
   CONSTRAINT `ordine_FK2` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- L’esportazione dei dati non era selezionata.
+-- Dump dei dati della tabella ouparfum.ordine: ~0 rows (circa)
 
 -- Dump della struttura di tabella ouparfum.prodotto
 CREATE TABLE IF NOT EXISTS `prodotto` (
@@ -72,13 +81,11 @@ CREATE TABLE IF NOT EXISTS `prodotto` (
   `base` varchar(500) NOT NULL,
   `centrale` varchar(500) NOT NULL,
   `apertura` varchar(500) NOT NULL,
-  `id_dettagli` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `prodotto_FK1` (`id_dettagli`),
-  CONSTRAINT `prodotto_FK1` FOREIGN KEY (`id_dettagli`) REFERENCES `dettagli` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+  `percorso` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- L’esportazione dei dati non era selezionata.
+-- Dump dei dati della tabella ouparfum.prodotto: ~0 rows (circa)
 
 -- Dump della struttura di tabella ouparfum.utente
 CREATE TABLE IF NOT EXISTS `utente` (
@@ -89,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `utente` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- L’esportazione dei dati non era selezionata.
+-- Dump dei dati della tabella ouparfum.utente: ~0 rows (circa)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
