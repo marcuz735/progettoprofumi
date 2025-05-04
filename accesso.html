@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accesso</title>
+  <!-- Collegamento al foglio di stile CSS condiviso con la homepage -->
+  <link rel="stylesheet" href="stilehom.css" />
+</head>
+<body>
+
+  <!-- Barra superiore con logo, titolo, navigazione e icone -->
+  <header class="site-header">
+    <div class="header-left">
+      <img src="immagini/logo.png" alt="Logo" class="logo">
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="homepage.html">Home</a></li>
+        <li><a href="prodotti.html">I Nostri Prodotti</a></li>
+        <li><a href="contatti.html">Contatti</a></li>
+      </ul>
+    </nav>
+    <div class="header-icons">
+      <!-- Icona del carrello che porta alla pagina del carrello -->
+      <a href="carrello.html" class="cart-icon">🛒</a>
+      <!-- Icona dell'utente -->
+      <span class="user-icon">👤</span>
+    </div>
+  </header>
+
+  <!-- Link "Indietro" per tornare alla homepage -->
+  <div style="margin: 1em 2em;">
+    <a href="homepage.html" style="text-decoration: none; color: rgb(41, 84, 177); font-weight: bold;">&larr; Indietro</a>
+  </div>
+
+  <!-- Sezione principale con il form di registrazione -->
+  <main>
+    <div id="form-wrapper" style="max-width: 400px; margin: 2em auto; padding: 2em; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+      <form class="register-form">
+        <div class="form-header" style="text-align: center;">
+          <!-- Emoji dell'utente -->
+          <span class="user-icon" style="font-size: 2em;">👤</span>
+          <h2>Crea un account</h2>
+        </div>
+
+        <!-- Campo per l'email -->
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <!-- Campo per la password -->
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+
+        <!-- Campo per confermare la password -->
+        <label for="confirm-password">Conferma Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" required />
+
+        <!-- Pulsante per inviare il form di registrazione -->
+        <button type="submit" style="margin-top: 1em;">Registrati</button>
+      </form>
+
+      <!-- Link per passare al form di login -->
+      <div class="switch-form" style="margin-top: 1em; text-align: center;">
+        <p>Hai già un account? <a href="#" id="login-link">Accedi</a></p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Script JavaScript per gestire il cambio tra form di registrazione e login -->
+  <script>
+    // Attende che il DOM sia completamente caricato prima di eseguire il codice
+    document.addEventListener('DOMContentLoaded', function () {
+      // Seleziona il link "Accedi" nel form di registrazione
+      const loginLink = document.getElementById('login-link');
+
+      // Aggiunge un listener per il click sul link "Accedi"
+      loginLink.addEventListener('click', function(e) {
+        e.preventDefault(); // Previene il comportamento predefinito del link
+
+        // Seleziona il contenitore del form
+        const wrapper = document.getElementById('form-wrapper');
+
+        // Sostituisce il contenuto HTML del contenitore con il form di login
+        wrapper.innerHTML = `
+          <form class="login-form">
+            <div class="form-header" style="text-align: center;">
+              <span class="user-icon" style="font-size: 2em;">👤</span>
+              <h2>Accedi</h2>
+            </div>
+
+            <!-- Campo per l'email -->
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+
+            <!-- Campo per la password -->
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+
+            <!-- Pulsante per inviare il form di login -->
+            <button type="submit" style="margin-top: 1em;">Accedi</button>
+          </form>
+
+          <!-- Link per tornare al form di registrazione -->
+          <div class="switch-form" style="margin-top: 1em; text-align: center;">
+            <p>Non hai un account? <a href="#" id="register-link">Registrati</a></p>
+          </div>
+        `;
+
+        // Seleziona il nuovo link "Registrati" nel form di login
+        const registerLink = document.getElementById('register-link');
+
+        // Aggiunge un listener per il click sul link "Registrati"
+        registerLink.addEventListener('click', function(e) {
+          e.preventDefault(); // Previene il comportamento predefinito del link
+          location.reload(); // Ricarica la pagina per tornare al form di registrazione
+        });
+      });
+    });
+  </script>
+</body>
+</html>

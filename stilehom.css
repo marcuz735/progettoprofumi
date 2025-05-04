@@ -1,0 +1,249 @@
+/* CSS per la homepage */
+
+/* Stili generali */
+body {
+    overflow: hidden;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fff;
+    color: #333;
+    display: flex;
+    flex-direction: column;  /* Organizza i contenuti in una colonna */
+    min-height: 100vh;        /* La pagina deve occupare tutta l'altezza */
+  }
+  
+  /* Header */
+  header {
+    background-color: #b9d3db;
+    padding: 1.5em;
+    text-align: center;
+  }
+  
+  header h1 {
+    margin: 0;
+    color: rgb(41, 84, 177);
+  }
+  
+  /* Header left (Logo e titolo) */
+  .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1em 2em;
+      background-color: #b9d3db;
+    }
+    
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    min-width: 200px; 
+  }
+  
+  
+  .logo {
+    width: 250px;
+    height: 100px;
+    object-fit: cover;
+    margin: 0;
+  }
+  
+  /* Nav centrato nella riga */
+  .main-nav {
+    flex: 1; /* Spinge il nav a occupare lo spazio centrale */
+    display: flex;
+    justify-content: center;
+  }
+  
+  .main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 3.5em;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .main-nav a {
+    text-decoration: none;
+    color: rgb(41, 84, 177);
+    font-weight: bold;
+  }
+  
+  .main-nav a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Icone a destra e affiancate */
+  .header-icons {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    min-width: 100px; /* Regola per bilanciare con la sinistra */
+  }
+  
+  .user-icon,.cart-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+    color: rgb(41, 84, 177);
+    text-decoration: none;
+  }
+  
+ /* CSS per la sezione Nuovi Arrivi */
+ .new-arrivals {
+  display: flex;
+  align-items: center;         /* Centra verticalmente */
+  justify-content: flex-start; /* Allinea tutto a sinistra */
+  gap: 15em;                    /* Spazio tra carosello e scritta */
+  position: relative;
+  margin-left: 50px;
+}
+  /* Contenitore del carosello */
+  .carousel-container {
+    display: flex;
+    overflow: hidden;
+    width: 600px;       /* o la larghezza desiderata */
+    position: relative;
+    margin-left: 0;     /* assicurati che non sia centrato */
+  }
+  .carousel-link {
+    flex-shrink: 0;
+    text-align: center;
+  }
+  
+  .carousel-link a {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 5rem;
+    line-height: 1.4;
+    color: rgb(41, 84, 177);
+    text-decoration: none;
+  }
+  
+  .carousel-link a:hover {
+    text-decoration: underline;
+  }
+  /* Immagini nel carosello */
+  .carousel-container img {
+    width: 100%;
+    flex-shrink: 0;
+    transition: transform 1s ease;
+  }
+  
+  /* Frecce */
+  .arrow {
+    position: absolute;
+    top: 55%;
+    transform: translateY(-50%);
+    font-size: 2em;
+    cursor: pointer;
+    color: #333;
+    z-index: 2;
+  }
+  
+  .arrow-left {
+    left: 0;
+  }
+  
+  .arrow-right {
+    left: 550px; /* subito dopo il carosello */
+  }
+  
+  /* Footer */
+  .footer {
+    color: rgb(41, 84, 177);   /* Colore del testo */
+    text-align: center;        /* Centra il testo */
+    padding: 2em;              /* Padding per distanziare il testo dai bordi */
+    font-family: 'Segoe UI', sans-serif; /* Stesso font della pagina */
+    font-weight: normal;       
+    font-size: 1rem;           
+    margin-top: auto;          /* Spinge il footer in basso */
+    width: 100%;               /* Occupa tutta la larghezza disponibile */
+  }
+  /* Contenitore del form di login */
+.login-container {
+  max-width: 500px;
+  margin: 2em auto;
+  padding: 2em;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Testo dell'intestazione del form */
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 2em;
+}
+
+.user-icon {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: rgb(41, 84, 177);
+  margin: 0;
+}
+
+/* Stili per il form */
+label {
+  display: block;
+  margin: 0.5em 0 0.25em;
+}
+
+input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 0.8em;
+  margin-bottom: 1.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 0.8em;
+  background-color: rgb(41, 84, 177);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #325d8d;
+}
+
+/* Link per la registrazione */
+.signup-link {
+  text-align: center;
+  margin-top: 1.5em;
+}
+
+.signup-link a {
+  color: rgb(41, 84, 177);
+  font-weight: bold;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+/* Posizione e stile del link "Indietro" */
+.back-link {
+  margin-top: 1em;
+  margin-left: 2em;
+}
+
+.back-link a {
+  text-decoration: none;
+  color: rgb(41, 84, 177);
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
