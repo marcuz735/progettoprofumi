@@ -30,21 +30,22 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1em 2em;
       background-color: #b9d3db;
     }
     
   
-  .header-left {
-    display: flex;
-    align-items: center;
-    min-width: 200px; 
-  }
+    .header-left {
+      display: flex;
+      align-items: center;
+      min-width: 200px;
+      margin-left: 0; /* Assicura che non ci sia margine a sinistra */
+      padding-left: 0; /* Nessun padding */
+    }
   
   
   .logo {
-    width: 250px;
-    height: 100px;
+    width: 200px;
+    height: 80px;
     object-fit: cover;
     margin: 0;
   }
@@ -165,6 +166,7 @@ body {
 /* Contenitore del footer */
 .footer-container {
   display: flex;
+  
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -373,4 +375,50 @@ button[type="submit"]:hover {
 
 .back-link a:hover {
   text-decoration: underline;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  justify-content: center;
+  padding: 2em;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  background-color: #f6f6f6;
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.product:hover {
+  transform: scale(1.05);
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-info {
+  text-align: center;
+  margin-top: 0.5em;
+}
+
+.product-info h3 {
+  margin: 0.5em 0 0.2em;
+  font-size: 1.1em;
+  color: #2954b1;
+}
+
+.price {
+  color: #333;
+  font-weight: bold;
 }
