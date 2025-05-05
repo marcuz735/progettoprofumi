@@ -30,21 +30,22 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1em 2em;
       background-color: #b9d3db;
     }
     
   
-  .header-left {
-    display: flex;
-    align-items: center;
-    min-width: 200px; 
-  }
+    .header-left {
+      display: flex;
+      align-items: center;
+      min-width: 200px;
+      margin-left: 0; /* Assicura che non ci sia margine a sinistra */
+      padding-left: 0; /* Nessun padding */
+    }
   
   
   .logo {
-    width: 250px;
-    height: 100px;
+    width: 200px;
+    height: 80px;
     object-fit: cover;
     margin: 0;
   }
@@ -165,6 +166,7 @@ body {
 /* Contenitore del footer */
 .footer-container {
   display: flex;
+  
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
