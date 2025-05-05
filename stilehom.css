@@ -1,8 +1,9 @@
 /* CSS per la homepage */
 
 /* Stili generali */
+
 body {
-    overflow: hidden;
+    overflow-x: hidden;
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     background-color: #fff;
@@ -95,7 +96,7 @@ body {
   justify-content: flex-start; /* Allinea tutto a sinistra */
   gap: 15em;                    /* Spazio tra carosello e scritta */
   position: relative;
-  margin-left: 50px;
+  margin-left: 40px;
 }
   /* Contenitore del carosello */
   .carousel-container {
@@ -106,15 +107,17 @@ body {
     margin-left: 0;     /* assicurati che non sia centrato */
   }
   .carousel-link {
-    flex-shrink: 0;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 3em;
+    line-height: 1.4;
+    max-width: 180px;
     text-align: center;
+    margin-left: 20px;
+    padding-left: 20px;
   }
   
   .carousel-link a {
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 5rem;
-    line-height: 1.4;
     color: rgb(41, 84, 177);
     text-decoration: none;
   }
@@ -149,16 +152,140 @@ body {
   }
   
   /* Footer */
-  .footer {
-    color: rgb(41, 84, 177);   /* Colore del testo */
-    text-align: center;        /* Centra il testo */
-    padding: 2em;              /* Padding per distanziare il testo dai bordi */
-    font-family: 'Segoe UI', sans-serif; /* Stesso font della pagina */
-    font-weight: normal;       
-    font-size: 1rem;           
-    margin-top: auto;          /* Spinge il footer in basso */
-    width: 100%;               /* Occupa tutta la larghezza disponibile */
+.footer {
+  background-color: #b9d3db;
+  color: #000000;
+  padding: 2em 0;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+}
+
+/* Contenitore del footer */
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Sezione informazioni (AuParfume) */
+.footer-info {
+  flex: 1;
+  text-align: center;
+  margin: 0 20px;
+}
+
+.footer-info h4 {
+  font-size: 1.5em;
+  color: rgb(41, 84, 177);
+}
+
+.footer-info .footer-description {
+  font-size: 1em;
+  color: #000000;
+  margin-top: 10px;
+  line-height: 1.5;
+  text-align: center;
+  max-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Sezione contatti */
+.footer-contact {
+  flex: 1;
+  text-align: center;
+  margin: 0 20px;
+}
+
+.footer-contact h4 {
+  font-size: 1.5em;
+  color: rgb(41, 84, 177);
+}
+
+.footer-contact p {
+  font-size: 1em;
+  color: #000000;
+  margin: 5px 0;
+}
+
+/* Link "Torna su" */
+.footer-back-to-top {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer-back-to-top a {
+  font-size: 1.2em;
+  color: rgb(41, 84, 177);
+  text-decoration: none;
+  font-style: italic;
+}
+
+.footer-back-to-top a:hover {
+  text-decoration: underline;
+}
+
+/* Copyright */
+.footer-bottom {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1em;
+  color: #333;
+}
+
+.footer-bottom p {
+  margin: 0;
+  padding: 10px 0;
+}
+
+/* Aggiungi margini e padding per gli elementi nel footer */
+.footer h4, .footer p {
+  margin: 10px 0;
+}
+
+  /* ========== Responsive Design ========== */
+
+@media (max-width: 768px) {
+  .main-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
   }
+
+  .carousel-container {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+  }
+
+  .carousel-container img {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .carousel-link {
+    position: static;
+    transform: none;
+    margin-top: 10px;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .site-header {
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  .header-icons {
+    justify-content: center;
+  }
+}
+
   /* Contenitore del form di login */
 .login-container {
   max-width: 500px;
