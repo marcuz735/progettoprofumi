@@ -4,12 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Accesso</title>
-  <!-- Collegamento al foglio di stile CSS condiviso con la homepage -->
   <link rel="stylesheet" href="stilehom.css" />
 </head>
 <body id="top">
 
-  <!-- Barra superiore con logo, titolo, navigazione e icone -->
   <header class="site-header">
     <div class="header-left">
       <img src="immagini/logo.png" alt="Logo" class="logo">
@@ -22,19 +20,11 @@
       </ul>
     </nav>
     <div class="header-icons">
-      <!-- Icona del carrello che porta alla pagina del carrello -->
       <a href="carrello.html" class="cart-icon">🛒</a>
-      <!-- Icona dell'utente -->
       <span class="user-icon">👤</span>
     </div>
   </header>
 
-  <!-- Link "Indietro" per tornare alla homepage -->
-  <div style="margin: 1em 2em;">
-    <a href="homepage.html" style="text-decoration: none; color: rgb(41, 84, 177); font-weight: bold;">&larr; Indietro</a>
-  </div>
-
-  <!-- Sezione principale con il form di registrazione -->
   <main>
     <div id="form-wrapper" style="max-width: 400px; margin: 2em auto; padding: 2em; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
       <form class="register-form" action="registrazione.php" method="POST">
@@ -61,7 +51,6 @@
     </div>
   </main>
 
-  <!-- Script JavaScript per gestire il cambio tra form di registrazione e login -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const loginLink = document.getElementById('login-link');
@@ -94,14 +83,12 @@
         const registerLink = wrapper.querySelector('#register-link');
         registerLink.addEventListener('click', function(e) {
           e.preventDefault();
-          location.reload(); // torna alla form originale
+          location.reload();
         });
 
-        // Riattiva validazione per il nuovo form
         attachValidation();
       });
 
-      // Funzione per attaccare validazione (riutilizzabile)
       function attachValidation() {
         document.body.addEventListener('submit', function(e) {
           const form = e.target;
@@ -137,41 +124,73 @@
               e.preventDefault();
             }
           }
-        }, { once: true }); // si attiva una sola volta per evitare ripetizioni
+        }, { once: true });
       }
 
       attachValidation();
+
+      // Gestione messaggi da query string
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("errore") === "1" || params.get("registrato") === "1") {
+        loginLink.click();
+      }
+
+      if (params.get("errore") === "1") {
+        setTimeout(() => {
+          const wrapper = document.getElementById('form-wrapper');
+          const err = document.createElement('div');
+          err.style.color = 'red';
+          err.style.marginBottom = '1em';
+          err.textContent = 'Email o password errati.';
+          const form = wrapper.querySelector('form.login-form');
+          if (form) form.insertBefore(err, form.querySelector('button'));
+        }, 200);
+      }
+
+      if (params.get("registrato") === "1") {
+        setTimeout(() => {
+          const wrapper = document.getElementById('form-wrapper');
+          const msg = document.createElement('div');
+          msg.style.color = 'green';
+          msg.style.marginTop = '0.5em';
+          msg.textContent = 'Registrazione avvenuta con successo! Ora puoi accedere.';
+          const form = wrapper.querySelector('form.login-form');
+          if (form) form.insertBefore(msg, form.querySelector('button'));
+        }, 200);
+      }
+
+      if (params.get("errore_reg") === "1") {
+        const wrapper = document.getElementById('form-wrapper');
+        const err = document.createElement('div');
+        err.style.color = 'red';
+        err.style.marginBottom = '1em';
+        err.textContent = 'Email già registrata. Usa un’altra email.';
+        const form = wrapper.querySelector('form.register-form');
+        if (form) form.insertBefore(err, form.querySelector('button'));
+      }
     });
   </script>
 
-<footer class="footer" id="bottom">
-  <div class="footer-container">
-    <!-- Sezione informazioni -->
-    <div class="footer-info">
-      <h4>AuParfume</h4>
-      <p class="footer-description">
-        Scopri la tua essenza<br>Vivi il tuo profumo<br>Esprimi la tua personalità</p>
+  <footer class="footer" id="bottom">
+    <div class="footer-container">
+      <div class="footer-info">
+        <h4>AuParfume</h4>
+        <p class="footer-description">
+          Scopri la tua essenza<br>Vivi il tuo profumo<br>Esprimi la tua personalità</p>
+      </div>
+      <div class="footer-contact">
+        <h4>Contatti</h4>
+        <p><strong>Email:</strong> support@auparfume.com</p>
+        <p><strong>Telefono:</strong> +39 0123 456789</p>
+        <p><strong>Indirizzo:</strong> Via Roma, 123, Milano, Italia</p>
+      </div>
     </div>
-
-    <!-- Sezione contatti -->
-    <div class="footer-contact">
-      <h4>Contatti</h4>
-      <p><strong>Email:</strong> support@auparfume.com</p>
-      <p><strong>Telefono:</strong> +39 0123 456789</p>
-      <p><strong>Indirizzo:</strong> Via Roma, 123, Milano, Italia</p>
+    <div class="footer-back-to-top">
+      <a href="#top" class="back-to-top-link">Torna su</a>
     </div>
-  </div>
-
-  <!-- Sezione "Torna su" sotto AuParfume -->
-  <div class="footer-back-to-top">
-    <a href="#top" class="back-to-top-link">Torna su</a>
-  </div>
-
-  <!-- Copyright -->
-  <div class="footer-bottom">
-    <p>&copy; 2025 AuParfume - Tutti i diritti riservati</p>
-  </div>
-</footer>
-
+    <div class="footer-bottom">
+      <p>&copy; 2025 AuParfume - Tutti i diritti riservati</p>
+    </div>
+  </footer>
 </body>
 </html>

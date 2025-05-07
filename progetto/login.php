@@ -19,12 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (mysqli_stmt_fetch($stmt) && password_verify($pw, $hash_pw)) {
         $_SESSION["utente_id"] = $id;
         $_SESSION["utente_mail"] = $mail;
-
-        // Redirect automatico alla homepage
         header("Location: homepage.html");
         exit();
     } else {
-        echo "Email o password errati.";
+        header("Location: accesso.html?errore=1");
+        exit();
     }
 
     mysqli_stmt_close($stmt);
