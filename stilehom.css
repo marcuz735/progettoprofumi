@@ -360,23 +360,8 @@ button[type="submit"]:hover {
 .signup-link a:hover {
   text-decoration: underline;
 }
-/* Posizione e stile del link "Indietro" */
-.back-link {
-  margin-top: 1em;
-  margin-left: 2em;
-}
 
-.back-link a {
-  text-decoration: none;
-  color: rgb(41, 84, 177);
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-.back-link a:hover {
-  text-decoration: underline;
-}
-
+/*pagina prodotti*/
 .product-list {
   display: flex;
   flex-wrap: wrap;
@@ -421,4 +406,68 @@ button[type="submit"]:hover {
 .price {
   color: #333;
   font-weight: bold;
+}
+
+
+/* Pagina prod_info */
+.product-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3em 2em;
+  min-height: calc(100vh - 160px); /* Adatta in base all’altezza di header e footer */
+  background-color: #f9f9f9;
+}
+
+.product-container {
+  display: flex;
+  align-items: center; /* Centra verticalmente immagine e contenuto */
+  gap: 3em;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.product-image {
+  width: 450px; 
+  max-width: 100%; /* si adatta comunque su schermi piccoli */
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-info {
+  flex: 1;
+}
+
+.product-info h2 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.product-info .description {
+  font-style: italic;
+  margin-bottom: 1em;
+}
+
+.product-info .price {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1.5em;
+}
+
+/* Pulsante aggiungi al carrello */
+.add-to-cart {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #b9d3db;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+  background-color: #a2c3ce;
 }
