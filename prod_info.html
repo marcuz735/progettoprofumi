@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Info Prodotto - AuParfum</title>
+  <link rel="stylesheet" href="stilehom.css" />
+</head>
+<body id="top">
+    <header class="site-header">
+      <div class="header-left">
+        <img src="immagini/logo.png" alt="Logo OuParfume" class="logo"> 
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="homepage.html">Home</a></li>
+          <li><a href="prodotti.html">I Nostri Prodotti</a></li>
+          <li><a href="#bottom">Contatti</a></li>
+        </ul>
+      </nav>
+      <!-- Icone come link -->
+      <div class="header-icons">
+      <a href="carrello.html" class="cart-icon">
+        🛒
+      </a>
+      <a href="accesso.html" class="user-icon">
+        👤
+      </a></div>
+  </header>
+
+  <!-- MAIN: Sezione principale con dettagli del prodotto -->
+  <main class="product-main">
+    <div class="product-container">
+      <img src="immagini/prof1.png" alt="Nome Prodotto" class="product-image">
+  
+      <div class="product-info">
+        <h2>Nome Prodotto</h2>
+        <p class="description">Una fragranza raffinata e avvolgente per ogni occasione.</p>
+        <p class="price">€49.99</p>
+  
+        <h3>Note di apertura</h3>
+        <p>Agrumi, Menta</p>
+  
+        <h3>Note centrali</h3>
+        <p>Lavanda, Gelsomino</p>
+  
+        <h3>Note di base</h3>
+        <p>Legno di Sandalo, Vaniglia</p>
+  
+        <button class="add-to-cart">Aggiungi al Carrello</button>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer" id="bottom">
+    <div class="footer-container">
+      <!-- Sezione informazioni -->
+      <div class="footer-info">
+        <h4>AuParfume</h4>
+        <p class="footer-description">
+          Scopri la tua essenza<br>Vivi il tuo profumo<br>Esprimi la tua personalità</p>
+      </div>
+  
+      <!-- Sezione contatti -->
+      <div class="footer-contact">
+        <h4>Contatti</h4>
+        <p><strong>Email:</strong> support@auparfume.com</p>
+        <p><strong>Telefono:</strong> +39 0123 456789</p>
+        <p><strong>Indirizzo:</strong> Via Roma, 123, Milano, Italia</p>
+      </div>
+    </div>
+  
+    <!-- Sezione "Torna su" sotto OuParfume -->
+    <div class="footer-back-to-top">
+      <a href="#top" class="back-to-top-link">Torna su</a>
+    </div>
+  
+    <!-- Copyright -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 OuParfume - Tutti i diritti riservati</p>
+    </div>
+  </footer>
+
+  <!-- Script per popolare dinamicamente i dettagli del prodotto -->
+  <script>
+    // Estrae il parametro 'product' dall'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+
+    // Dati dei prodotti (esempio per il prodotto 1)
+    const products = {
+      1: {
+        name: "Profumo 1",
+        price: "€40.00",
+        desc: "Profumo fresco e delicato con sentori floreali.",
+        top: "Limone, Bergamotto",
+        heart: "Gelsomino, Rosa",
+        base: "Muschio, Ambra"
+      },
+      // Aggiungi altri prodotti qui...
+    };
+
+    // Verifica se il prodotto esiste e aggiorna la pagina
+    const data = products[productId];
+    if (data) {
+      document.getElementById('product-img').src = `immagini/prof${productId}.png`;
+      document.getElementById('product-name').textContent = data.name;
+      document.getElementById('product-price').textContent = data.price;
+      document.getElementById('product-desc').textContent = data.desc;
+      document.getElementById('top-notes').textContent = data.top;
+      document.getElementById('heart-notes').textContent = data.heart;
+      document.getElementById('base-notes').textContent = data.base;
+    }
+  </script>
+</body>
+</html>
