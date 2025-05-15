@@ -2,7 +2,7 @@
 session_start(); // Avvia la sessione
 
 // Controlla se la sessione dell'utente è attiva
-if (isset($_SESSION['utente'])) {
+if (isset($_SESSION['utente_id'])) {
     // Se l'utente è loggato, reindirizza alla pagina account.php
     header("Location: account.php");
     exit();

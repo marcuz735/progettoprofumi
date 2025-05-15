@@ -85,75 +85,127 @@ $conn->close();
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>Il tuo account</title>
-    <link rel="stylesheet" href="stilehom.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profumi di Classe - Home</title>
+  <link rel="stylesheet" href="stilehom.css"> <!-- Collega il file CSS -->
+
 </head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="homepage.html">Home</a></li>
-                <li><a href="prodotti.php">I Nostri Prodotti</a></li>
-                <li><a href="contatti.html">Contatti</a></li>
-            </ul>
-        </nav>
-    </header>
+<body id="top">
+  <header class="site-header">
+    <div class="header-left">
+      <img src="immagini/logo.png" alt="Logo OuParfume" class="logo"> 
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="homepage.html">Home</a></li>
+        <li><a href="prodotti.php">I Nostri Prodotti</a></li>
+        <li><a href="#bottom">Contatti</a></li>
+      </ul>
+    </nav>
+    <!-- Icone come link -->
+    <div class="header-icons">
+    <a href="carrello.php" class="cart-icon">
+      🛒
+    </a>
+    <a href="accesso.html" class="user-icon">
+      👤
+    </a></div>
+  </header>
 
-    <main>
-        <h2>Ciao, <?php echo htmlspecialchars($utente_mail); ?></h2>
+  <main class="login-main">
+  <div class="login-form-container">
+    <h2 class="login-title">Benvenuto, <?php echo htmlspecialchars($utente_mail); ?></h2>
 
-        <!-- Modifica email -->
-        <form method="POST">
-            <label for="nuova_mail">Cambia email:</label>
-            <input type="email" name="nuova_mail" required>
-            <button type="submit">Aggiorna Email</button>
-            <?php if ($messaggio_mail): ?>
-                <div><?php echo $messaggio_mail; ?></div>
-            <?php endif; ?>
-        </form>
+    <!-- Modifica email -->
+    <form method="POST" class="login-form">
+      <label for="nuova_mail">Nuova email</label>
+      <input type="email" name="nuova_mail" required>
+      <button type="submit">Aggiorna Email</button>
+      <?php if ($messaggio_mail): ?>
+        <p class="form-message"><?php echo $messaggio_mail; ?></p>
+      <?php endif; ?>
+    </form>
 
-        <!-- Modifica password -->
-        <form method="POST">
-            <label for="vecchia_pw">Vecchia password:</label>
-            <input type="password" name="vecchia_pw" required>
-            <label for="nuova_pw">Nuova password:</label>
-            <input type="password" name="nuova_pw" required>
-            <button type="submit">Aggiorna Password</button>
-            <?php if ($errore_pw): ?>
-                <div><?php echo $errore_pw; ?></div>
-            <?php elseif ($messaggio_pw): ?>
-                <div><?php echo $messaggio_pw; ?></div>
-            <?php endif; ?>
-        </form>
+    <!-- Modifica password -->
+    <form method="POST" class="login-form">
+      <label for="vecchia_pw">Vecchia password</label>
+      <input type="password" name="vecchia_pw" required>
+      <label for="nuova_pw">Nuova password</label>
+      <input type="password" name="nuova_pw" required>
+      <button type="submit">Aggiorna Password</button>
+      <?php if ($errore_pw): ?>
+        <p class="form-error"><?php echo $errore_pw; ?></p>
+      <?php elseif ($messaggio_pw): ?>
+        <p class="form-message"><?php echo $messaggio_pw; ?></p>
+      <?php endif; ?>
+    </form>
 
-        <!-- Storico ordini -->
-        <h2>Storico Ordini</h2>
-        <?php if ($storico->num_rows > 0): ?>
-            <table>
-                <tr>
-                    <th>ID Ordine</th>
-                    <th>Indirizzo</th>
-                    <th>CAP</th>
-                    <th>Provincia</th>
-                    <th>Stato</th>
-                </tr>
-                <?php while ($ordine = $storico->fetch_assoc()): ?>
-                    <tr>
-                        <td><?php echo $ordine['id']; ?></td>
-                        <td><?php echo $ordine['via'] . ' ' . $ordine['civico'] . ', ' . $ordine['citta']; ?></td>
-                        <td><?php echo $ordine['cap']; ?></td>
-                        <td><?php echo $ordine['provincia']; ?></td>
-                        <td><?php echo ($ordine['stato'] === 'o') ? 'Ordinato' : 'In Carrello'; ?></td>
-                    </tr>
-                <?php endwhile; ?>
-            </table>
-        <?php else: ?>
-            <p>Nessun ordine effettuato.</p>
-        <?php endif; ?>
+    <!-- Storico ordini -->
+    <h3 class="login-subtitle">Storico Ordini</h3>
+    <?php if ($storico->num_rows > 0): ?>
+      <div class="orders-box">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Indirizzo</th>
+              <th>CAP</th>
+              <th>Provincia</th>
+              <th>Stato</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php while ($ordine = $storico->fetch_assoc()): ?>
+              <tr>
+                <td><?php echo $ordine['id']; ?></td>
+                <td><?php echo $ordine['via'] . ' ' . $ordine['civico'] . ', ' . $ordine['citta']; ?></td>
+                <td><?php echo $ordine['cap']; ?></td>
+                <td><?php echo $ordine['provincia']; ?></td>
+                <td><?php echo ($ordine['stato'] === 'o') ? 'Ordinato' : 'In Carrello'; ?></td>
+              </tr>
+            <?php endwhile; ?>
+          </tbody>
+        </table>
+      </div>
+    <?php else: ?>
+      <p class="form-message">Nessun ordine effettuato.</p>
+    <?php endif; ?>
 
-        <!-- Logout -->
-        <a href="logout.php">Logout</a>
-    </main>
+    <!-- Logout -->
+    <div class="logout-container">
+      <a href="logout.php" class="logout-button">Logout</a>
+    </div>
+  </div>
+</main>
+
+    <footer class="footer" id="bottom">
+      <div class="footer-container">
+        <!-- Sezione informazioni -->
+        <div class="footer-info">
+          <h4>OuParfume</h4>
+          <p class="footer-description">
+            Scopri la tua essenza<br>Vivi il tuo profumo<br>Esprimi la tua personalità</p>
+        </div>
+    
+        <!-- Sezione contatti -->
+        <div class="footer-contact">
+          <h4>Contatti</h4>
+          <p><strong>Email:</strong> support@auparfume.com</p>
+          <p><strong>Telefono:</strong> +39 0123 456789</p>
+          <p><strong>Indirizzo:</strong> Via Roma, 123, Milano, Italia</p>
+        </div>
+      </div>
+    
+      <!-- Sezione "Torna su" sotto AuParfume -->
+      <div class="footer-back-to-top">
+        <a href="#top" class="back-to-top-link">Torna su</a>
+      </div>
+    
+      <!-- Copyright -->
+      <div class="footer-bottom">
+        <p>&copy; 2025 OuParfume - Tutti i diritti riservati</p>
+      </div>
+    </footer>
 </body>
 </html>

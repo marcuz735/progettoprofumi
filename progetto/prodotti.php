@@ -42,14 +42,14 @@ if ($result->num_rows > 0) {
         </div>
         <nav class="main-nav">
             <ul>
-                <li><a href="homepage.php">Home</a></li>
+                <li><a href="homepage.html">Home</a></li>
                 <li><a href="prodotti.php">I Nostri Prodotti</a></li>
                 <li><a href="#bottom">Contatti</a></li>
             </ul>
         </nav>
         <!-- Icone come link -->
         <div class="header-icons">
-            <a href="carrello.html" class="cart-icon">🛒</a>
+            <a href="carrello.php" class="cart-icon">🛒</a>
             <a href="accesso.html" class="user-icon">👤</a>
         </div>
     </header>
@@ -60,15 +60,21 @@ if ($result->num_rows > 0) {
             <?php
             // Cicliamo su ogni prodotto estratto dal database
             foreach ($prodotti as $prodotto) {
+                // Recupera i dati
+                $percorso = htmlspecialchars($prodotto['percorso']);
+                $nome = htmlspecialchars($prodotto['nome']);
+                $prezzo = number_format($prodotto['prezzo'], 2);
+            
                 // Stampa un blocco per ogni prodotto
                 echo '<a href="prod_info.php?product=' . $prodotto['id'] . '" class="product">';
-                echo '<img src="immagini/' . $prodotto['immagine'] . '" alt="Profumo ' . $prodotto['titolo'] . '" />';
+                echo '<img src="' . $percorso . '" alt="Profumo ' . $nome . '" />';
                 echo '<div class="product-info">';
-                echo '<h3>' . $prodotto['titolo'] . '</h3>';
-                echo '<p class="price">€' . number_format($prodotto['prezzo'], 2) . '</p>';
+                echo '<h3>' . $nome . '</h3>';
+                echo '<p class="price">€' . $prezzo . '</p>';
                 echo '</div>';
                 echo '</a>';
             }
+            
             ?>
         </section>
     </main>

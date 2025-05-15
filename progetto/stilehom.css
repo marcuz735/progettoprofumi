@@ -374,3 +374,104 @@ font-size: 1.2em;
 .back-link a:hover {
 text-decoration: underline;
 }
+
+/*account.php*/
+.login-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px); /* lascia spazio per header/footer */
+  background-color: #f2f2f2;
+  padding: 30px 0;
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 500px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
+}
+
+.login-title, .login-subtitle {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.login-form label {
+  font-weight: bold;
+}
+
+.login-form input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.login-form button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgb(41, 84, 177);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #325d8d;
+  ;
+}
+
+.form-message {
+  color: green;
+  margin-top: 8px;
+}
+
+.form-error {
+  color: red;
+  margin-top: 8px;
+}
+
+.orders-box {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+.orders-table th, .orders-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.logout-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.logout-button {
+  display: inline-block;
+  background-color: #aa0000;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.logout-button:hover {
+  background-color: #cc0000;
+}
