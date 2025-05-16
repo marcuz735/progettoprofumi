@@ -50,7 +50,7 @@ if ($result->num_rows > 0) {
         <!-- Icone come link -->
         <div class="header-icons">
             <a href="carrello.php" class="cart-icon">🛒</a>
-            <a href="accesso.html" class="user-icon">👤</a>
+            <a href="account_redirect.php" class="user-icon">👤</a>
         </div>
     </header>
 

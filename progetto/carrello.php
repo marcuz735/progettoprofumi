@@ -94,7 +94,7 @@ if ($id_ordine !== null) {
     </nav>
     <div class="header-icons">
         <a href="carrello.php" class="cart-icon">🛒</a>
-        <a href="accesso.html" class="user-icon">👤</a>
+        <a href="account_redirect.php" class="user-icon">👤</a>
     </div>
 </header>
 
@@ -149,7 +149,7 @@ if ($id_ordine !== null) {
         <div class="carrello-totale">
             <p><strong>Totale:</strong> €<?= number_format($totale, 2) ?></p>
             <form action="conferma_ordine.php" method="post">
-                <button type="submit" class="btn-conferma">Conferma Ordine</button>
+                <button type="submit">Conferma Ordine</button>
             </form>
         </div>
     <?php endif; ?>
