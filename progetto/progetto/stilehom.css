@@ -30,21 +30,22 @@ header h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1em 2em;
     background-color: #b9d3db;
   }
   
 
-.header-left {
-  display: flex;
-  align-items: center;
-  min-width: 200px; 
-}
+  .header-left {
+    display: flex;
+    align-items: center;
+    min-width: 200px;
+    margin-left: 0; /* Assicura che non ci sia margine a sinistra */
+    padding-left: 0; /* Nessun padding */
+  }
 
 
 .logo {
-  width: 250px;
-  height: 100px;
+  width: 200px;
+  height: 80px;
   object-fit: cover;
   margin: 0;
 }
@@ -165,6 +166,7 @@ bottom: 0;
 /* Contenitore del footer */
 .footer-container {
 display: flex;
+
 justify-content: center;
 align-items: center;
 flex-wrap: wrap;
@@ -358,120 +360,260 @@ font-weight: bold;
 .signup-link a:hover {
 text-decoration: underline;
 }
-/* Posizione e stile del link "Indietro" */
-.back-link {
-margin-top: 1em;
-margin-left: 2em;
+
+/*pagina prodotti*/
+.product-list {
+display: flex;
+flex-wrap: wrap;
+gap: 2em;
+justify-content: center;
+padding: 2em;
 }
 
-.back-link a {
-text-decoration: none;
-color: rgb(41, 84, 177);
+.product {
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 200px;
+background-color: #f6f6f6;
+padding: 1em;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+transition: transform 0.2s;
+}
+
+.product:hover {
+transform: scale(1.05);
+}
+
+.product img {
+width: 100%;
+height: auto;
+border-radius: 8px;
+}
+
+.product-info {
+text-align: center;
+margin-top: 0.5em;
+}
+
+.product-info h3 {
+margin: 0.5em 0 0.2em;
+font-size: 1.1em;
+color: #2954b1;
+}
+
+.price {
+color: #333;
 font-weight: bold;
-font-size: 1.2em;
 }
 
-.back-link a:hover {
-text-decoration: underline;
+
+/* Pagina prod_info */
+.product-main {
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 3em 2em;
+min-height: calc(100vh - 160px); /* Adatta in base all’altezza di header e footer */
+background-color: #f9f9f9;
+}
+
+.product-container {
+display: flex;
+align-items: center; /* Centra verticalmente immagine e contenuto */
+gap: 3em;
+max-width: 1200px;
+width: 100%;
+}
+
+.product-image {
+width: 450px; 
+max-width: 100%; /* si adatta comunque su schermi piccoli */
+height: auto;
+object-fit: cover;
+border-radius: 8px;
+}
+
+.product-info {
+flex: 1;
+}
+
+.product-info h2 {
+font-size: 2em;
+margin-bottom: 0.5em;
+}
+
+.product-info .description {
+font-style: italic;
+margin-bottom: 1em;
+}
+
+.product-info .price {
+font-weight: bold;
+color: #333;
+margin-bottom: 1.5em;
+}
+
+/* Pulsante aggiungi al carrello */
+.add-to-cart {
+margin-top: 20px;
+padding: 12px 24px;
+background-color: #b9d3db;
+color: #000;
+border: none;
+border-radius: 6px;
+font-size: 1rem;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+background-color: #a2c3ce;
 }
 
 /*account.php*/
-.login-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 120px); /* lascia spazio per header/footer */
-  background-color: #f2f2f2;
-  padding: 30px 0;
+.form-container {
+max-width: 600px;
+margin: 30px auto;
+padding: 30px;
+background-color: #f8f8f8;
+border-radius: 12px;
+box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
-.login-form-container {
-  width: 100%;
-  max-width: 500px;
-  background-color: white;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
+.form-container h2, .form-container h3 {
+margin-bottom: 20px;
+text-align: center;
 }
 
-.login-title, .login-subtitle {
-  text-align: center;
-  margin-bottom: 20px;
+.form-container form {
+margin-bottom: 25px;
 }
 
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 25px;
+.form-container label {
+display: block;
+margin-top: 10px;
 }
 
-.login-form label {
-  font-weight: bold;
+.form-container input {
+width: 100%;
+padding: 8px;
+margin-top: 5px;
+border-radius: 5px;
+border: 1px solid #ccc;
 }
 
-.login-form input {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+.form-container button {
+margin-top: 15px;
+width: 100%;
+padding: 10px;
+background-color: #333;
+color: white;
+border: none;
+border-radius: 6px;
+cursor: pointer;
 }
 
-.login-form button {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: rgb(41, 84, 177);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+.form-container button:hover {
+background-color: #555;
 }
 
-.login-form button:hover {
-  background-color: #325d8d;
-  ;
+.form-container .logout-button {
+display: inline-block;
+padding: 10px 20px;
+background-color: #aa0000;
+color: white;
+text-decoration: none;
+border-radius: 6px;
 }
 
-.form-message {
-  color: green;
-  margin-top: 8px;
+.form-container .logout-button:hover {
+background-color: #cc0000;
 }
 
-.form-error {
-  color: red;
-  margin-top: 8px;
+.form-container table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 15px;
 }
 
-.orders-box {
-  overflow-x: auto;
-  margin-top: 10px;
+.form-container th, .form-container td {
+border: 1px solid #ccc;
+padding: 8px;
+text-align: center;
+}
+/*carrello.php*/
+.carrello-container {
+max-width: 900px;
+margin: 40px auto;
+background-color: #fff;
+padding: 30px;
+border-radius: 16px;
+box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
-.orders-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9em;
+.carrello-item {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 25px;
+border-bottom: 1px solid #eee;
+padding-bottom: 20px;
 }
 
-.orders-table th, .orders-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
+.carrello-item img {
+width: 120px;
+height: auto;
+border-radius: 12px;
+object-fit: cover;
 }
 
-.logout-container {
-  text-align: center;
-  margin-top: 20px;
+.carrello-details {
+flex: 1;
+margin-left: 20px;
 }
 
-.logout-button {
-  display: inline-block;
-  background-color: #aa0000;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-decoration: none;
+.carrello-details h4 {
+margin: 0;
+font-size: 1.1rem;
 }
 
-.logout-button:hover {
-  background-color: #cc0000;
+.carrello-details .prezzo {
+margin: 8px 0;
+font-weight: bold;
+color: #333;
+}
+
+.quantita-controls {
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.quantita-controls button {
+padding: 5px 10px;
+background-color: #ddd;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+font-weight: bold;
+}
+
+.quantita-controls span {
+min-width: 20px;
+text-align: center;
+}
+
+.totale-container {
+display: flex;
+justify-content: flex-end;
+margin-top: 30px;
+border-top: 2px solid #aaa;
+padding-top: 20px;
+}
+
+.totale-container p {
+font-size: 1.2rem;
+font-weight: bold;
 }

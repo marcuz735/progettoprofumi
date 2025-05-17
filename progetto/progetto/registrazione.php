@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $hash_pw = password_hash($password, PASSWORD_DEFAULT);
 
     // Inserimento dell'utente nella tabella utenti
-    $stmt = mysqli_prepare($conn, "INSERT INTO utenti (mail, pw) VALUES (?, ?)");
+    $stmt = mysqli_prepare($conn, "INSERT INTO utenti (mail, pw, stato) VALUES (?, ?, 'u')");
     mysqli_stmt_bind_param($stmt, "ss", $email, $hash_pw);
 
     if (mysqli_stmt_execute($stmt)) {
