@@ -38,10 +38,17 @@ if ($aroma_selezionato || $genere_selezionato) {
 }
 
 // Costruisci query prodotti
-$queryProdotti = "SELECT * FROM prodotti";
 if (!empty($id_categorie_filtrate)) {
     $id_str = implode(',', array_map('intval', $id_categorie_filtrate));
-    $queryProdotti .= " WHERE id_categoria IN ($id_str)";
+    $queryProdotti = "SELECT * FROM prodotti WHERE id_categoria IN ($id_str)";
+} else {
+    if ($aroma_selezionato || $genere_selezionato) {
+        // Nessuna categoria corrisponde ai filtri impostati: nessun prodotto da mostrare
+        $queryProdotti = "SELECT * FROM prodotti WHERE 1=0";
+    } else {
+        // Nessun filtro impostato: mostra tutti i prodotti
+        $queryProdotti = "SELECT * FROM prodotti";
+    }
 }
 
 $result = $conn->query($queryProdotti);
@@ -99,7 +106,7 @@ $prodotti = ($result && $result->num_rows > 0) ? $result->fetch_all(MYSQLI_ASSOC
 
         <section class="product-list" id="product-list">
             <?php if (empty($prodotti)): ?>
-                <p style="text-align: center;">Nessun prodotto trovato.</p>
+                <p style="text-align: center;">Nessun prodotto trovato per la categoria selezionata.</p>
             <?php else: ?>
                 <?php foreach ($prodotti as $prodotto): ?>
                     <a href="prod_info.php?product=<?= $prodotto['id'] ?>" class="product">

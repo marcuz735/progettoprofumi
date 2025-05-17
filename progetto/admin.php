@@ -12,12 +12,39 @@ if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
 }
 
-// Caricamento categorie per il menu a tendina
+// --- GESTIONE CATEGORIE ---
+
+// Inserimento nuova categoria
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["azione_cat"]) && $_POST["azione_cat"] === "inserisci_categoria") {
+    $aroma = $_POST["aroma"];
+    $genere = $_POST["genere"];
+    $stmt = $conn->prepare("INSERT INTO categorie (aroma, genere) VALUES (?, ?)");
+    $stmt->bind_param("ss", $aroma, $genere);
+    $stmt->execute();
+    $stmt->close();
+    header("Location: admin.php"); // Ricarica la pagina
+    exit();
+}
+
+// Eliminazione categoria
+if (isset($_GET["elimina_categoria"])) {
+    $id_categoria = $_GET["elimina_categoria"];
+    $stmt = $conn->prepare("DELETE FROM categorie WHERE id = ?");
+    $stmt->bind_param("i", $id_categoria);
+    $stmt->execute();
+    $stmt->close();
+    header("Location: admin.php");
+    exit();
+}
+
+// Caricamento categorie per il menu a tendina e per la gestione categorie
 $categorie = [];
 $cat_result = $conn->query("SELECT id, aroma, genere FROM categorie");
 while ($riga = $cat_result->fetch_assoc()) {
     $categorie[$riga['id']] = $riga['aroma'] . " - " . ucfirst($riga['genere']);
 }
+
+// --- GESTIONE PRODOTTI ---
 
 // INSERIMENTO PRODOTTO
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["azione"]) && $_POST["azione"] === "inserisci") {
@@ -84,8 +111,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["azione"]) && $_POST["
     $stmt->bind_param("sssssdssi", $nome, $descrizione, $apertura, $centrale, $base, $prezzo, $categoria, $percorso, $id);
     $stmt->execute();
     $stmt->close();
-
-
 }
 
 // RECUPERO TUTTI I PRODOTTI
@@ -100,11 +125,13 @@ $prodotti = $conn->query("SELECT * FROM prodotti");
     <style>
         body { font-family: Arial; margin: 20px; }
         table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; vertical-align: top; }
         h2 { margin-top: 40px; }
         form { margin-bottom: 30px; }
         input, textarea, select { width: 100%; padding: 6px; margin: 5px 0; }
-        .btn { padding: 8px 16px; margin-top: 10px; }
+        .btn { padding: 8px 16px; margin-top: 10px; cursor: pointer; }
+        img { border-radius: 4px; }
+        a { text-decoration: none; color: red; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -131,6 +158,45 @@ $prodotti = $conn->query("SELECT * FROM prodotti");
     <button type="submit" class="btn">Inserisci</button>
 </form>
 
+<!-- SEZIONE GESTIONE CATEGORIE -->
+<h2>Gestione categorie</h2>
+
+<h3>Nuova categoria</h3>
+<form method="POST">
+    <input type="hidden" name="azione_cat" value="inserisci_categoria">
+    Aroma: <input type="text" name="aroma" required>
+    Genere:
+    <select name="genere" required>
+        <option value="" disabled selected>Seleziona genere</option>
+        <option value="Femminile">Femminile</option>
+        <option value="Maschile">Maschile</option>
+    </select>
+    <button type="submit" class="btn">Aggiungi Categoria</button>
+</form>
+
+<h3>Categorie esistenti</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Aroma</th>
+        <th>Genere</th>
+        <th>Azioni</th>
+    </tr>
+    <?php
+    $cat_result = $conn->query("SELECT id, aroma, genere FROM categorie");
+    while ($cat = $cat_result->fetch_assoc()):
+    ?>
+        <tr>
+            <td><?= $cat['id'] ?></td>
+            <td><?= htmlspecialchars($cat['aroma']) ?></td>
+            <td><?= htmlspecialchars($cat['genere']) ?></td>
+            <td>
+                <a href="?elimina_categoria=<?= $cat['id'] ?>" onclick="return confirm('Eliminare questa categoria?')">🗑️</a>
+            </td>
+        </tr>
+    <?php endwhile; ?>
+</table>
+
 <h2>Prodotti esistenti</h2>
 <table>
     <tr>
@@ -147,7 +213,7 @@ $prodotti = $conn->query("SELECT * FROM prodotti");
     <?php while ($row = $prodotti->fetch_assoc()): ?>
         <tr>
             <form method="POST" enctype="multipart/form-data">
-                <td><img src="<?= $row['percorso'] ?>" width="50" alt="img"></td>
+                <td><img src="<?= htmlspecialchars($row['percorso']) ?>" width="50" alt="img"></td>
                 <td><input type="text" name="nome" value="<?= htmlspecialchars($row['nome']) ?>"></td>
                 <td><textarea name="descrizione"><?= htmlspecialchars($row['descrizione']) ?></textarea></td>
                 <td><input type="text" name="apertura" value="<?= htmlspecialchars($row['apertura']) ?>"></td>
@@ -166,8 +232,7 @@ $prodotti = $conn->query("SELECT * FROM prodotti");
                 <td>
                     <input type="hidden" name="id" value="<?= $row['id'] ?>">
                     <input type="hidden" name="azione" value="modifica">
-                    <input type="hidden" name="percorso_vecchio" value="<?= $row['percorso'] ?>">
-                    <!-- NUOVO CAMPO FILE PER L'IMMAGINE -->
+                    <input type="hidden" name="percorso_vecchio" value="<?= htmlspecialchars($row['percorso']) ?>">
                     <input type="file" name="immagine" accept="image/*">
                     <button type="submit" class="btn">Salva</button>
                     <a href="?elimina=<?= $row['id'] ?>" onclick="return confirm('Sei sicuro?')">🗑️</a>
@@ -176,9 +241,11 @@ $prodotti = $conn->query("SELECT * FROM prodotti");
         </tr>
     <?php endwhile; ?>
 </table>
-    <form action="logout.php" method="post" style="text-align: right;">
-        <button type="submit" style="background-color: red; color: white; border: none; padding: 8px 16px; cursor: pointer;">Logout</button>
-    </form>
+
+<form action="logout.php" method="post" style="text-align: right;">
+    <button type="submit" style="background-color: red; color: white; border: none; padding: 8px 16px; cursor: pointer;">Logout</button>
+</form>
+
 </body>
 </html>
 
