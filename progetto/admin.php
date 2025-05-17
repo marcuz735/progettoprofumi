@@ -70,10 +70,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["azione"]) && $_POST["
 // CANCELLAZIONE PRODOTTO
 if (isset($_GET["elimina"])) {
     $id = $_GET["elimina"];
+
+    // Prima cancella tutti i dettagli che fanno riferimento a questo prodotto
+    $stmt = $conn->prepare("DELETE FROM dettagli WHERE id_prodotto = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
+
+    // Ora elimina il prodotto
     $stmt = $conn->prepare("DELETE FROM prodotti WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->close();
+
+    header("Location: admin.php");
+    exit();
 }
 
 // MODIFICA PRODOTTO
