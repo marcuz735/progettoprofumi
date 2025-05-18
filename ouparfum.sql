@@ -53,13 +53,15 @@ CREATE TABLE IF NOT EXISTS `dettagli` (
   KEY `dettagli_FK2` (`id_prodotto`),
   CONSTRAINT `dettagli_FK1` FOREIGN KEY (`id_ordine`) REFERENCES `ordini` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `dettagli_FK2` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotti` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dump dei dati della tabella ouparfum.dettagli: ~2 rows (circa)
+-- Dump dei dati della tabella ouparfum.dettagli: ~4 rows (circa)
 DELETE FROM `dettagli`;
 INSERT INTO `dettagli` (`id`, `id_ordine`, `id_prodotto`, `quantita`) VALUES
 	(3, 2, 4, 1),
-	(4, 2, 3, 1);
+	(4, 2, 3, 1),
+	(6, 3, 4, 2),
+	(7, 3, 13, 1);
 
 -- Dump della struttura di tabella ouparfum.ordini
 DROP TABLE IF EXISTS `ordini`;
@@ -75,13 +77,14 @@ CREATE TABLE IF NOT EXISTS `ordini` (
   `data_ordine` date DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   KEY `ordine_FK2` (`id_utente`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dump dei dati della tabella ouparfum.ordini: ~2 rows (circa)
+-- Dump dei dati della tabella ouparfum.ordini: ~3 rows (circa)
 DELETE FROM `ordini`;
 INSERT INTO `ordini` (`id`, `citta`, `cap`, `provincia`, `via`, `civico`, `stato`, `id_utente`, `data_ordine`) VALUES
 	(2, 'Brisighella', '48013', 'RA', 'Via faentina', '7', 'o', 3, '2025-05-17'),
-	(3, NULL, NULL, NULL, NULL, NULL, 'c', 3, NULL);
+	(3, 'Brisighella', '48013', 'RA', 'Via faentina', '7', 'o', 3, '2025-05-18'),
+	(4, NULL, NULL, NULL, NULL, NULL, 'c', 3, NULL);
 
 -- Dump della struttura di tabella ouparfum.prodotti
 DROP TABLE IF EXISTS `prodotti`;
@@ -98,9 +101,9 @@ CREATE TABLE IF NOT EXISTS `prodotti` (
   PRIMARY KEY (`id`),
   KEY `prodotto_FK1` (`id_categoria`),
   CONSTRAINT `prodotto_FK1` FOREIGN KEY (`id_categoria`) REFERENCES `categorie` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dump dei dati della tabella ouparfum.prodotti: ~23 rows (circa)
+-- Dump dei dati della tabella ouparfum.prodotti: ~24 rows (circa)
 DELETE FROM `prodotti`;
 INSERT INTO `prodotti` (`id`, `nome`, `descrizione`, `centrale`, `base`, `apertura`, `percorso`, `id_categoria`, `prezzo`) VALUES
 	(1, 'Selva Luminosa', 'Un viaggio nel cuore di una foresta rigogliosa e misteriosa, dove ogni respiro è carico di vita e profondità. Selva Luminosa evoca la potenza della natura con note fresche di foglie e resine, illuminate da una brezza agrumata che taglia la quiete del bosco. È un profumo che sprigiona libertà, istinto e radici profonde. Per l’uomo che ama sentirsi parte del mondo naturale, selvaggio ma armonioso.', 'Resina di pino, legno aromatico, salvia selvatica', 'Muschio di quercia, ambra verde, vetiver', 'Foglie verdi, agrumi luminosi, rugiada', 'immagini/prof1.png', 4, 49.99),
@@ -122,10 +125,11 @@ INSERT INTO `prodotti` (`id`, `nome`, `descrizione`, `centrale`, `base`, `apertu
 	(17, 'Bosco Antico', 'Rustico, nobile, intenso. Bosco Antico racconta il fascino silenzioso degli alberi secolari. Un profumo per l’uomo maturo, radicato, che sa ascoltare la natura.', 'Muschio di quercia, vetiver, pepe nero', ' Legno di cedro, ambra verde, patchouli', 'Cipresso, aghi di pino, pompelmo', 'immagini/prof17.png', 3, 47.99),
 	(18, 'Talco Rosa', ' Morbido, nostalgico, tenero. Talco Rosa è un abbraccio d’altri tempi, fatto di polvere profumata e fiori delicati. Per chi ama sentirsi coccolata.', 'Iris, lavanda, fiore di cotone', 'Talco, muschio bianco, vaniglia', 'Rosa, eliotropio, violetta', 'immagini/prof18.png', 7, 47.99),
 	(19, 'Nuvola di Cotone', ' Una nuvola soffice e pulita, che sa di bucato fresco e cielo sereno. Nuvola di Cotone è una fragranza delicata, rassicurante, intima. Per la donna sensibile e autentica.', 'Mughetto, fiori bianchi, muschio pulito', 'Vaniglia leggera, ambra bianca, legno soft', 'Aldeidi, fiore di cotone, pera', 'immagini/prof19.png', 7, 69.99),
-	(21, 'Spezia d’Oriente', 'Calore, mistero, avventura. Spezia d’Oriente è un viaggio sensoriale tra mercati lontani e legni preziosi. Una fragranza maschile decisa, esotica e affascinante. Per chi ama distinguersi.', 'Zafferano, patchouli, incenso', 'Oud, cuoio, ambra scura', 'Cannella, pepe nero, cardamomo', 'immagini/prof20_2.png', 4, 64.99),
+	(21, 'Spezia d’Oriente', 'Calore, mistero, avventura. Spezia d’Oriente è un viaggio sensoriale tra mercati lontani e legni preziosi. Una fragranza maschile decisa, esotica e affascinante. Per chi ama distinguersi.', 'Zafferano, patchouli, incenso', 'Oud, cuoio, ambra scura', 'Cannella, pepe nero, cardamomo', 'immagini/prof20.png', 4, 64.99),
 	(22, 'Ombra di Vetro', 'Raffinato, enigmatico, urbano. Ombra di Vetro è il riflesso di un uomo moderno che vive tra grattacieli, silenzi e pensieri profondi. Una fragranza che gioca tra la freschezza iniziale e la profondità dei legni, perfetta per chi ha uno stile riservato ma intenso. La nota di vetiver emerge con decisione, mentre l’ambra e il muschio completano una scia elegante e inconfondibile.', 'Vetiver haitiano, lavanda, legno di cedro', 'Muschio grigio, ambra chiara, legni affumicati', 'Salvia sclarea, pompelmo, pepe di Sichuan', 'immagini/prof21.png', 4, 55.99),
 	(23, 'Forgia Nera', 'Forgia Nera è potenza grezza, fuoco e metallo fuso. Un profumo per l’uomo carismatico, che non teme il confronto e lascia dietro di sé un’eco di autorità e fascino. Il cuoio bruciato incontra la resina calda e densa dell’oud, mentre una nota di rum scuro evoca serate lunghe, profonde e indimenticabili. Una fragranza maschile dal carattere dominante, quasi primordiale.', 'Cuoio, legno di guaiaco, cisto', 'Oud, ambra scura, fava tonka', 'Rum, pepe nero, bacche di ginepro', 'immagini/prof22.png', 6, 44.99),
-	(24, 'Drago d’Ambra', 'Audace, esotico, leggendario. Drago d’Ambra è ispirato ai miti orientali e ai guerrieri del deserto. Un profumo pensato per l’uomo che sfida il tempo e lo spazio, che cerca il senso delle cose nelle tracce lasciate dal vento caldo e dalla sabbia. Le spezie bruciano come fiamme su incensi antichi, mentre ambra e legni resinosi costruiscono un’aura magnetica e potente.', 'Incenso, cannella, mirra', 'Ambra dorata, sandalo, resina di benzoino', 'Zenzero, noce moscata, pepe lungo', 'immagini/prof23.png', 8, 67.99);
+	(24, 'Drago d’Ambra', 'Audace, esotico, leggendario. Drago d’Ambra è ispirato ai miti orientali e ai guerrieri del deserto. Un profumo pensato per l’uomo che sfida il tempo e lo spazio, che cerca il senso delle cose nelle tracce lasciate dal vento caldo e dalla sabbia. Le spezie bruciano come fiamme su incensi antichi, mentre ambra e legni resinosi costruiscono un’aura magnetica e potente.', 'Incenso, cannella, mirra', 'Ambra dorata, sandalo, resina di benzoino', 'Zenzero, noce moscata, pepe lungo', 'immagini/prof23.png', 8, 67.99),
+	(25, 'Ghiaccio Nero', 'Ghiaccio Nero è il paradosso dell’uomo contemporaneo: freddo come la superficie di un lago d’inverno, ma profondo e vivo sotto la calma apparente. Una fragranza che unisce la purezza gelida delle note ozoniche alla forza silenziosa dei legni più rari. Perfetto per chi ama distinguersi con eleganza sottile, lasciando una scia pulita, magnetica, inconfondibile.\r\nIl contrasto tra l’inizio glaciale e la struttura legnosa ne fa un profumo ideale per l’uomo riservato ma determinato, affilato come il vento del Nord.', 'Cipresso, lavanda alpina, geranio verde', 'Legno di cashmere, ambroxan, muschio di quercia', 'Menta selvatica, ghiaccio ozonico, bergamotto', 'immagini/prof24.png', 4, 45.99);
 
 -- Dump della struttura di tabella ouparfum.utenti
 DROP TABLE IF EXISTS `utenti`;
@@ -137,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `utenti` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dump dei dati della tabella ouparfum.utenti: ~1 rows (circa)
+-- Dump dei dati della tabella ouparfum.utenti: ~2 rows (circa)
 DELETE FROM `utenti`;
 INSERT INTO `utenti` (`id`, `mail`, `pw`, `stato`) VALUES
 	(3, 'cavina.sara06@gmail.com', '$2y$12$XLoCxZVtUPu9ERxzyyGlzeTy0zaN4NEVBoR3FXWnmWB.D7XjPl0by', 'u'),
