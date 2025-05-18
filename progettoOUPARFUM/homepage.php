@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "root", "ouparfum");
+$conn = new mysqli("localhost", "root", "vc-mob2-22", "ouparfum");
 if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
 }
