@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OuParfum</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    /* Sfondo immagine */
+    .bg-image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+
+    header {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: rgb(41, 84, 177);
+    }
+
+    header h1 {
+      font-size: 4em;
+      font-weight: bold;
+      margin-bottom: 0.6em;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    #subtitle {
+      font-size: 1.5em;
+      margin-top: -1em;
+      margin-bottom: 1em;
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    header button {
+      padding: 12px 24px;
+      font-size: 1em;
+      background-color: #b9d3db;
+      color: rgb(41, 84, 177);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    header button:hover {
+      background-color: #ddd;
+    }
+
+    section {
+      padding: 2em;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>OuParfum</h1>
+    <p id="subtitle">Scopri la tua Essenza</p>
+    <a href="homepage.php">
+      <button>Esplora</button>
+    </a>
+  </header>
+
+  <script>
+    const subtitles = [
+      "Scopri la tua Essenza",
+      "Vivi il tuo Profumo",
+      "Esprimi la tua Personalità"
+    ];
+    let index = 0;
+    const subtitleEl = document.getElementById("subtitle");
+
+    setInterval(() => {
+      subtitleEl.style.opacity = 0;
+      setTimeout(() => {
+        index = (index + 1) % subtitles.length;
+        subtitleEl.textContent = subtitles[index];
+        subtitleEl.style.opacity = 1;
+      }, 400); // fade out + switch
+    }, 2000); // change every 2 seconds
+  </script>
+
+</body>
+</html>
+
